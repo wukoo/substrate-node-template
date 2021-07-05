@@ -1,6 +1,7 @@
 [features]
 default = []
 runtime-benchmarks = ['node-template-runtime/runtime-benchmarks']
+try-runtime = ['node-template-runtime/try-runtime']
 
 [build-dependencies.substrate-build-script-utils]
 git = 'https://github.com/paritytech/substrate.git'
@@ -171,5 +172,24 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-07'
 version = '3.0.0'
 
+[dependencies.frame-try-runtime]
+default-features = false
+version = "0.9.0"
+git = 'https://github.com/paritytech/substrate.git'
+optional = true
+
+[dependencies.try-runtime-cli]
+default-features = false
+version = "0.9.0"
+rev = '9c572625f6557dfdb19f47474369a0327d51dfbc'
+git = 'https://github.com/paritytech/substrate.git'
+
+cli = [
+    'try-runtime-cli',
+]
+try-runtime = [
+    "node-runtime/try-runtime",
+    "try-runtime-cli",
+]
 [[bin]]
 name = 'node-template'
