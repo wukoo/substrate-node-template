@@ -69,6 +69,11 @@ std = [
     'sp-version/std',
     'frame-try-runtime/std',
 ]
+
+[dependencies]
+frame-try-runtime = { git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-07', optional = true }
+try-runtime-cli = { git = 'https://github.com/paritytech/substrate.git', tag = 'monthly-2021-07', optional = true }
+
 [dependencies.codec]
 default-features = false
 features = ['derive']
@@ -235,9 +240,3 @@ default-features = false
 git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-07'
 version = '3.0.0'
-
-[dependencies.frame-try-runtime]
-default-features = false
-version = "0.9.0"
-git = 'https://github.com/paritytech/substrate.git'
-optional = true
