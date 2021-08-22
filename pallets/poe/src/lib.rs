@@ -3,6 +3,11 @@
 // 存证相关
 pub use pallet::*;
 
+#[cfg(test)]
+mod mock;
+#[cfg(test)]
+mod tests;
+
 #[frame_support::pallet]
 pub mod pallet {
 	use frame_support::{dispatch::DispatchResultWithPostInfo, pallet_prelude::*};
@@ -107,10 +112,10 @@ pub mod pallet {
             // 判断存证存在
             let (owner, _) = Proofs::<T>::get(&claim).ok_or(Error::<T>::NoSuchProof)?;
 
-            // 校验存证所属正确
+            // 校验存证owner权限
             ensure!(owner==sender,Error::<T>::NotProofOwner);
 
-            // 更改所属地址
+            // 更改所有者
             let current_block = frame_system::Pallet::<T>::block_number();
             Proofs::<T>::insert(
                 &claim,
